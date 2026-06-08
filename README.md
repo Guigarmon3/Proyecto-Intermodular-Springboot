@@ -3,11 +3,6 @@
 API REST para la gestión de la biblioteca del AMPA y el inventario de libros de texto del IES La Vereda.
 
 ---
-
-## 🗄️ Base de datos
-
-El proyecto usa **MySQL**. Asegúrate de tener MySQL corriendo y edita `application.properties`:
-
 ```properties
 spring.datasource.url=jdbc:mysql://localhost:3306/IesLaVereda?createDatabaseIfNotExist=true&...
 spring.datasource.username=root
@@ -28,13 +23,6 @@ La primera vez que arranques, el `DataLoader` insertará todos los datos de la w
 | `prestamos`  | Quién tiene cada libro, fechas y estado                  |
 
 ---
-
-## 🚀 Arrancar el proyecto
-
-```bash
-# Desde la carpeta del proyecto
-mvn spring-boot:run
-```
 
 El servidor arranca en `http://localhost:8080`
 
@@ -116,12 +104,3 @@ POST /api/usuarios
 }
 ```
 
----
-
-## 🛠️ Tecnologías
-- Java 17
-- Spring Boot 3.2.5
-- Spring Data JPA + Hibernate
-- MySQL
-- Lombok
-- Maven
