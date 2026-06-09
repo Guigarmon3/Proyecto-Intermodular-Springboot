@@ -1,5 +1,6 @@
 package com.ieslavereda.ampa.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -24,10 +25,6 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    /**
-     * NIA: Número de Identificación del Alumno/Profesor.
-     * Ej: 202601, 202602...
-     */
     @Column(name = "nia", unique = true, nullable = false, length = 20)
     @NotBlank(message = "El NIA es obligatorio")
     private String nia;
@@ -40,33 +37,33 @@ public class Usuario {
     @NotBlank(message = "Los apellidos son obligatorios")
     private String apellidos;
 
-    /**
-     * ALUMNO o PROFESOR
-     */
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo", nullable = false)
     @NotNull
     private TipoUsuario tipo;
 
-    /**
-     * Curso del alumno (ej: "2º DAW") o cargo del profesor (ej: "Matemáticas").
-     */
     @Column(name = "curso_o_cargo", length = 100)
     private String cursoOCargo;
 
-    /**
-     * Email de contacto (opcional).
-     */
-    @Column(name = "email", length = 150)
+    @Column(name = "email", length = 150, nullable = false)
     private String email;
 
     /**
-     * Préstamos activos o pasados de este usuario.
-     * mappedBy apunta al campo 'usuario' en Prestamo.
+     * Username único para login (solo profesores).
      */
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @Column(name = "username", unique = true, length = 100)
+    private String username;
+
+    /**
+     * Contraseña hasheada (solo profesores).
+     */
+    @Column(name = "password", length = 255)
+    private String password;
+
+    @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
+    @JsonIgnore
     @Builder.Default
     private List<Prestamo> prestamos = new ArrayList<>();
 

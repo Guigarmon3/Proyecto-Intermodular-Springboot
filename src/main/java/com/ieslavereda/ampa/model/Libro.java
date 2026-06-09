@@ -1,5 +1,6 @@
 package com.ieslavereda.ampa.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -93,9 +94,10 @@ public class Libro {
     /**
      * Historial de préstamos de este libro.
      */
-    @OneToMany(mappedBy = "libro", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "libro", fetch = FetchType.LAZY)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
+    @JsonIgnore
     @Builder.Default
     private List<Prestamo> prestamos = new ArrayList<>();
 

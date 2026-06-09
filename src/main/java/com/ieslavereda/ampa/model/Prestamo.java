@@ -24,7 +24,7 @@ public class Prestamo {
     /**
      * Usuario que tiene el libro en préstamo.
      */
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "usuario_id", nullable = false)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
@@ -33,7 +33,7 @@ public class Prestamo {
     /**
      * Libro prestado.
      */
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "libro_id", nullable = false)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude

@@ -112,6 +112,19 @@ public class PrestamoService {
         return prestamoRepository.save(prestamo);
     }
 
+    /** Recuperar un préstamo devuelto → vuelve a PENDIENTE */
+    public Prestamo recuperarPrestamo(Long prestamoId) {
+        Prestamo prestamo = findById(prestamoId);
+        if (prestamo.getEstado() != Prestamo.EstadoPrestamo.DEVUELTO) {
+            throw new RuntimeException("Solo se pueden recuperar préstamos con estado DEVUELTO");
+        }
+        // Descontar stock de nuevo
+        libroService.reducirDisponibilidad(prestamo.getLibro().getId());
+        prestamo.setEstado(Prestamo.EstadoPrestamo.PENDIENTE);
+        prestamo.setFechaDevolucionReal(null);
+        return prestamoRepository.save(prestamo);
+    }
+
     /** Actualizar préstamos vencidos automáticamente */
     public int actualizarVencidos() {
         List<Prestamo> vencidos = prestamoRepository.findVencidos(LocalDate.now());

@@ -306,27 +306,35 @@ public class DataLoader implements CommandLineRunner {
             Usuario.builder()
                 .nia("202601").nombre("Pau").apellidos("Aguilar")
                 .tipo(Usuario.TipoUsuario.ALUMNO).cursoOCargo("2º DAW")
+                .email("pau.aguilar@ieslavereda.es")
                 .build(),
             Usuario.builder()
                 .nia("202602").nombre("Gonzalo").apellidos("Roch")
                 .tipo(Usuario.TipoUsuario.ALUMNO).cursoOCargo("2º DAW")
+                .email("gonzalo.roch@ieslavereda.es")
                 .build(),
             Usuario.builder()
                 .nia("202603").nombre("Guillermo").apellidos("García")
                 .tipo(Usuario.TipoUsuario.PROFESOR).cursoOCargo("Informática")
+                .email("guillermo.garcia@ieslavereda.es")
+                .username("guillermo").password("1234")
                 .build(),
             // Usuarios extra de ejemplo
             Usuario.builder()
                 .nia("202604").nombre("María").apellidos("López")
                 .tipo(Usuario.TipoUsuario.ALUMNO).cursoOCargo("1º ESO")
+                .email("maria.lopez@ieslavereda.es")
                 .build(),
             Usuario.builder()
                 .nia("202605").nombre("Carlos").apellidos("Martínez")
                 .tipo(Usuario.TipoUsuario.ALUMNO).cursoOCargo("3º ESO")
+                .email("carlos.martinez@ieslavereda.es")
                 .build(),
             Usuario.builder()
                 .nia("202606").nombre("Ana").apellidos("Sánchez")
                 .tipo(Usuario.TipoUsuario.PROFESOR).cursoOCargo("Matemáticas")
+                .email("ana.sanchez@ieslavereda.es")
+                .username("ana.sanchez").password("1234")
                 .build()
         );
 

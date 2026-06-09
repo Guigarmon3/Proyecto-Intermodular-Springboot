@@ -81,6 +81,19 @@ public class PrestamoController {
     }
 
     /**
+     * PUT /api/prestamos/{id}/recuperar → devolver un préstamo DEVUELTO a estado PENDIENTE
+     */
+    @PutMapping("/{id}/recuperar")
+    public ResponseEntity<?> recuperarPrestamo(@PathVariable Long id) {
+        try {
+            Prestamo prestamo = prestamoService.recuperarPrestamo(id);
+            return ResponseEntity.ok(prestamo);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
+        }
+    }
+
+    /**
      * PUT /api/prestamos/actualizar-vencidos → marcar automáticamente los vencidos
      * Devuelve cuántos fueron actualizados.
      */
